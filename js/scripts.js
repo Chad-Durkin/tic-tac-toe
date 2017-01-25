@@ -8,7 +8,11 @@ function createBoard(){
 
 function Players(playerOne, playerTwo, gameNumber) {
   this.playerOne = playerOne;
+  this.playerOneWins = 0;
+  this.playerOneLosses = 0;
   this.playerTwo = playerTwo;
+  this.playerTwoWins = 0;
+  this.playerTwoLosses = 0;
   this.gameNumber = gameNumber;
   this.gameBoard = createBoard();
 }
@@ -25,13 +29,11 @@ function placeMove(xCord, yCord, newGame, turnCounter) {
 
             newGame.gameBoard[xCord][yCord] = 2;
             turnCounter++;
-            console.log(turnCounter);
             return turnCounter;
           } else {
 
             newGame.gameBoard[xCord][yCord] = 1;
             turnCounter++;
-            console.log(turnCounter);
             return turnCounter;
           }
         }
@@ -40,7 +42,113 @@ function placeMove(xCord, yCord, newGame, turnCounter) {
   }
 }
 
+function checkForWin(gameBoard, playerOne, playerTwo, turnCounter, arrayGames) {
+  console.log(gameBoard);
+  //horizontal
+  if(gameBoard[0][0] > 0) {
+    if(gameBoard[0][0] === gameBoard[1][0] && gameBoard[0][0] === gameBoard[2][0]) {
+      if((turnCounter - 1) % 2 === 0) {
+        alert(playerTwo + " won!");
+      }
+      else {
+        alert(playerOne + " won!")
+      }
+      arrayGames.push(gameBoard);
+      gameBoard.empty();
+      console.log(gameBoard);
+    }
+  }
+  if(gameBoard[0][1] > 0) {
+    if(gameBoard[0][1] === gameBoard[1][1] && gameBoard[0][1] === gameBoard[2][1]) {
+      if((turnCounter - 1) % 2 === 0) {
+        alert(playerTwo + " won!");
+      }
+      else {
+        alert(playerOne + " won!");
+      }
+      arrayGames.push(gameBoard);
+      gameBoard.empty();
+    }
+  }
+  if(gameBoard[0][2] > 0) {
+    if(gameBoard[0][2] === gameBoard[1][2] && gameBoard[0][2] === gameBoard[2][2]) {
+      if((turnCounter - 1) % 2 === 0) {
+        alert(playerTwo + " won!");
+      }
+      else {
+        alert(playerOne + " won!");
+      }
+      arrayGames.push(gameBoard);
+      gameBoard.empty();
+    }
+  }
+  //vertical
+  if(gameBoard[0][0] > 0) {
+    if(gameBoard[0][0] === gameBoard[0][1] && gameBoard[0][0] === gameBoard[0][2]) {
+      if((turnCounter - 1) % 2 === 0) {
+        alert(playerTwo + " won!");
+      }
+      else {
+        alert(playerOne + " won!");
+      }
+      arrayGames.push(gameBoard);
+      gameBoard.empty();
+    }
+  }
+  if(gameBoard[1][0] > 0) {
+    if(gameBoard[1][0] === gameBoard[1][1] && gameBoard[1][0] === gameBoard[1][2]) {
+      if((turnCounter - 1) % 2 === 0) {
+        alert(playerTwo + " won!");
+      }
+      else {
+        alert(playerOne + " won!");
+      }
+      arrayGames.push(gameBoard);
+      gameBoard.empty();
+    }
+  }
+  if(gameBoard[2][0] > 0) {
+    if(gameBoard[2][0] === gameBoard[2][1] && gameBoard[2][0] === gameBoard[2][2]) {
+      if((turnCounter - 1) % 2 === 0) {
+        alert(playerTwo + " won!");
+      }
+      else {
+        alert(playerOne + " won!");
+      }
+      arrayGames.push(gameBoard);
+      gameBoard.empty();
+    }
+  }
+  //diagnol
+  if(gameBoard[0][0] > 0) {
+    if(gameBoard[0][0] === gameBoard[1][1] && gameBoard[0][0] === gameBoard[2][2]) {
+      if((turnCounter - 1) % 2 === 0) {
+        alert(playerTwo + " won!");
+      }
+      else {
+        alert(playerOne + " won!");
+      }
+      arrayGames.push(gameBoard);
+      gameBoard.empty();
+    }
+  }
+  if(gameBoard[2][0] > 0) {
+    if(gameBoard[2][0] === gameBoard[1][1] && gameBoard[2][0] === gameBoard[0][2]) {
+      if((turnCounter - 1) % 2 === 0) {
+        alert(playerTwo + " won!");
+      }
+      else {
+        alert(playerOne + " won!");
+      }
+      arrayGames.push(gameBoard);
+      gameBoard.empty();
+      console.log(gameBoard);
+    }
+  }
+}
+
 $(function() {
+var arrayGames = [];
 var gameCounter = 1;
 var turnCounter = 1;
 var xCord;
@@ -59,46 +167,55 @@ var yCord;
       xCord = 0;
       yCord = 0;
       turnCounter = placeMove(xCord, yCord, newGame, turnCounter);
+      checkForWin(newGame.gameBoard, newGame.playerOne, newGame.playerTwo, turnCounter, arrayGames);
     });
     $("#two").click(function(){
       xCord = 1;
       yCord = 0;
       turnCounter = placeMove(xCord, yCord, newGame, turnCounter);
+      checkForWin(newGame.gameBoard, newGame.playerOne, newGame.playerTwo, turnCounter);
     });
     $("#three").click(function(){
       xCord = 2;
       yCord = 0;
       turnCounter = placeMove(xCord, yCord, newGame, turnCounter);
+      checkForWin(newGame.gameBoard, newGame.playerOne, newGame.playerTwo, turnCounter);
     });
     $("#four").click(function(){
       xCord = 0;
       yCord = 1;
       turnCounter = placeMove(xCord, yCord, newGame, turnCounter);
+      checkForWin(newGame.gameBoard, newGame.playerOne, newGame.playerTwo, turnCounter);
     });
     $("#five").click(function(){
       xCord = 1;
       yCord = 1;
       turnCounter = placeMove(xCord, yCord, newGame, turnCounter);
+      checkForWin(newGame.gameBoard, newGame.playerOne, newGame.playerTwo, turnCounter);
     });
     $("#six").click(function(){
       xCord = 2;
       yCord = 1;
       turnCounter = placeMove(xCord, yCord, newGame, turnCounter);
+      checkForWin(newGame.gameBoard, newGame.playerOne, newGame.playerTwo, turnCounter);
     });
     $("#seven").click(function(){
       xCord = 0;
       yCord = 2;
       turnCounter = placeMove(xCord, yCord, newGame, turnCounter);
+      checkForWin(newGame.gameBoard, newGame.playerOne, newGame.playerTwo, turnCounter);
     });
     $("#eight").click(function(){
       xCord = 1;
       yCord = 2;
       turnCounter = placeMove(xCord, yCord, newGame, turnCounter);
+      checkForWin(newGame.gameBoard, newGame.playerOne, newGame.playerTwo, turnCounter);
     });
     $("#nine").click(function(){
       xCord = 2;
       yCord = 2;
       turnCounter = placeMove(xCord, yCord, newGame, turnCounter);
+      checkForWin(newGame.gameBoard, newGame.playerOne, newGame.playerTwo, turnCounter);
     });
 
 
