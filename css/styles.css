@@ -1,9 +1,36 @@
 body {
-  background-color: grey;
+  background-color: #102c59;
+  color: #f7e11b;
 }
 
+.top {
+  background-color: #5474a8;
+  color: #f7e11b;
+}
+
+input {
+  background-color: #5474a8;
+  color: #f7e11b;
+}
+
+#game-btn {
+  background-color: #f7e11b;
+  color: #102c59;
+  /*float: left;*/
+}
+/*
+#show-players {
+  background-color: #f7e11b;
+  color: #102c59;
+  margin-left: 10px;
+}
+
+#list-of-players {
+  display: none;
+}*/
+
 mark, .mark {
-  background-color: grey;
+  background-color: #102c59;
 }
 
 .wee {
@@ -13,17 +40,17 @@ mark, .mark {
 }
 
 #five {
-  border: 5px solid black;
+  border: 5px solid #f7e11b;
 }
 
 #four, #six {
-  border-bottom: 5px solid black;
-  border-top: 5px solid black;
+  border-bottom: 5px solid #f7e11b;
+  border-top: 5px solid #f7e11b;
 }
 
 #two, #eight {
-  border-left: 5px solid black;
-  border-right: 5px solid black;
+  border-left: 5px solid #f7e11b;
+  border-right: 5px solid #f7e11b;
 }
 
 #the-game-board {
@@ -31,7 +58,7 @@ mark, .mark {
   padding-right: 13px;
 }
 
-.mark, .displayPlayerOne, .displayPlayerTwo {
+.mark, .displayPlayerOne, .displayPlayerTwo, .displayPlayerTie {
   display: none;
 }
 

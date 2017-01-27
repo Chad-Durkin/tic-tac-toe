@@ -1,6 +1,8 @@
 var newGame;
 var arrayGames = [];
 var gameCounter = 0;
+var clickCounter = 0;
+var gameBool = false;
 
 function unbindStuff() {
   $("#one").unbind();
@@ -39,6 +41,7 @@ function Players(playerOne, playerTwo, gameNumber) {
 }
 
 function placeMove(xCord, yCord, currentGame, turnCounter, clickLocation) {
+  clickCounter++;
   for (var xIndex = 0; xIndex < 3; xIndex++) {
     if(xCord === xIndex) {
       for (var yIndex = 0; yIndex < 3; yIndex++) {
@@ -63,13 +66,15 @@ function placeMove(xCord, yCord, currentGame, turnCounter, clickLocation) {
   }
 }
 
-function playerOneWins(arrayGames, playerOne, playerTwo) {
+function playerOneWon(arrayGames, playerOne, playerTwo) {
   arrayGames[gameCounter - 1].playerOneWins += 1;
   arrayGames[gameCounter - 1].playerTwoLosses += 1;
   $('.displayPlayerOne').text(playerOne + "'s record is now (" + arrayGames[gameCounter-1].playerOneWins + " Wins & " + arrayGames[gameCounter-1].playerOneLosses + " Losses)");
   $('.displayPlayerTwo').text(playerTwo + "'s record is now (" + arrayGames[gameCounter-1].playerTwoWins + " Wins & " + arrayGames[gameCounter-1].playerTwoLosses + " Losses)");
   $(".displayPlayerOne").show();
+  $(".displayPlayerTwo").show();
   $(".wee").off();
+  return true;
 }
 
 function playerTwoWon(arrayGames, playerOne, playerTwo) {
@@ -78,7 +83,9 @@ function playerTwoWon(arrayGames, playerOne, playerTwo) {
   $('.displayPlayerOne').text(playerOne + "'s record is now (" + arrayGames[gameCounter-1].playerOneWins + " Wins & " + arrayGames[gameCounter-1].playerOneLosses + " Losses)");
   $('.displayPlayerTwo').text(playerTwo + "'s record is now (" + arrayGames[gameCounter-1].playerTwoWins + " Wins & " + arrayGames[gameCounter-1].playerTwoLosses + " Losses)");
   $(".displayPlayerTwo").show();
+  $(".displayPlayerOne").show();
   $(".wee").off();
+  return true;
 }
 
 function checkForWin(gameBoard, playerOne, playerTwo, turnCounter, arrayGames, gameCounter) {
@@ -86,30 +93,30 @@ function checkForWin(gameBoard, playerOne, playerTwo, turnCounter, arrayGames, g
   if(gameBoard[0][0] > 0) {
     if(gameBoard[0][0] === gameBoard[1][0] && gameBoard[0][0] === gameBoard[2][0]) {
       if((turnCounter - 1) % 2 === 0) {
-        playerTwoWon(arrayGames, playerOne, playerTwo);
+        gameBool = playerTwoWon(arrayGames, playerOne, playerTwo);
       }
       else {
-        playerOneWins(arrayGames, playerOne, playerTwo);
+        gameBool = playerOneWon(arrayGames, playerOne, playerTwo);
       }
     }
   }
   if(gameBoard[0][1] > 0) {
     if(gameBoard[0][1] === gameBoard[1][1] && gameBoard[0][1] === gameBoard[2][1]) {
       if((turnCounter - 1) % 2 === 0) {
-        playerTwoWon(arrayGames, playerOne, playerTwo);
+        gameBool = playerTwoWon(arrayGames, playerOne, playerTwo);
       }
       else {
-        playerOneWins(arrayGames, playerOne, playerTwo);
+        gameBool = playerOneWon(arrayGames, playerOne, playerTwo);
       }
     }
   }
   if(gameBoard[0][2] > 0) {
     if(gameBoard[0][2] === gameBoard[1][2] && gameBoard[0][2] === gameBoard[2][2]) {
       if((turnCounter - 1) % 2 === 0) {
-        playerTwoWon(arrayGames, playerOne, playerTwo);
+        gameBool = playerTwoWon(arrayGames, playerOne, playerTwo);
       }
       else {
-        playerOneWins(arrayGames, playerOne, playerTwo);
+        gameBool = playerOneWon(arrayGames, playerOne, playerTwo);
       }
     }
   }
@@ -117,30 +124,30 @@ function checkForWin(gameBoard, playerOne, playerTwo, turnCounter, arrayGames, g
   if(gameBoard[0][0] > 0) {
     if(gameBoard[0][0] === gameBoard[0][1] && gameBoard[0][0] === gameBoard[0][2]) {
       if((turnCounter - 1) % 2 === 0) {
-        playerTwoWon(arrayGames, playerOne, playerTwo);
+        gameBool = playerTwoWon(arrayGames, playerOne, playerTwo);
       }
       else {
-        playerOneWins(arrayGames, playerOne, playerTwo);
+        gameBool = playerOneWon(arrayGames, playerOne, playerTwo);
       }
     }
   }
   if(gameBoard[1][0] > 0) {
     if(gameBoard[1][0] === gameBoard[1][1] && gameBoard[1][0] === gameBoard[1][2]) {
       if((turnCounter - 1) % 2 === 0) {
-        playerTwoWon(arrayGames, playerOne, playerTwo);
+        gameBool = playerTwoWon(arrayGames, playerOne, playerTwo);
       }
       else {
-        playerOneWins(arrayGames, playerOne, playerTwo);
+        gameBool = playerOneWon(arrayGames, playerOne, playerTwo);
       }
     }
   }
   if(gameBoard[2][0] > 0) {
     if(gameBoard[2][0] === gameBoard[2][1] && gameBoard[2][0] === gameBoard[2][2]) {
       if((turnCounter - 1) % 2 === 0) {
-        playerTwoWon(arrayGames, playerOne, playerTwo);
+        gameBool = playerTwoWon(arrayGames, playerOne, playerTwo);
       }
       else {
-        playerOneWins(arrayGames, playerOne, playerTwo);
+        gameBool = playerOneWon(arrayGames, playerOne, playerTwo);
       }
     }
   }
@@ -148,22 +155,28 @@ function checkForWin(gameBoard, playerOne, playerTwo, turnCounter, arrayGames, g
   if(gameBoard[0][0] > 0) {
     if(gameBoard[0][0] === gameBoard[1][1] && gameBoard[0][0] === gameBoard[2][2]) {
       if((turnCounter - 1) % 2 === 0) {
-        playerTwoWon(arrayGames, playerOne, playerTwo);
+        gameBool = playerTwoWon(arrayGames, playerOne, playerTwo);
       }
       else {
-        playerOneWins(arrayGames, playerOne, playerTwo);
+        gameBool = playerOneWon(arrayGames, playerOne, playerTwo);
       }
     }
   }
   if(gameBoard[2][0] > 0) {
     if(gameBoard[2][0] === gameBoard[1][1] && gameBoard[2][0] === gameBoard[0][2]) {
       if((turnCounter - 1) % 2 === 0) {
-        playerTwoWon(arrayGames, playerOne, playerTwo);
+        gameBool = playerTwoWon(arrayGames, playerOne, playerTwo);
       }
       else {
-        playerOneWins(arrayGames, playerOne, playerTwo);
+        gameBool = playerOneWon(arrayGames, playerOne, playerTwo);
       }
     }
+  }
+  if(clickCounter === 9 && gameBool === false)
+  {
+    $(".displayPlayerTie").show();
+    $(".wee").off();
+    return gameBoard;
   }
   return gameBoard;
 }
@@ -186,6 +199,24 @@ function checkForPlayer(playerOne, playerTwo, arrayGames, gameCounter) {
     }
   }
   return arrayGames[gameCounter-1];
+}
+
+function checkForPlayerOneInput(playerOne) {
+  if(playerOne === "")
+  {
+    alert("please enter a name for each player!");
+    playerOne = prompt("Player 1's name: ");
+  }
+  return playerOne;
+}
+
+function checkForPlayerTwoInput(playerTwo) {
+  if(playerTwo === "")
+  {
+    alert("please enter a name for each player!");
+    playerTwo = prompt("Player 2's name: ");
+  }
+  return playerTwo;
 }
 
 function playTheGame(xCord, yCord, turnCounter, gameCounter, arrayGames) {
@@ -246,18 +277,22 @@ function playTheGame(xCord, yCord, turnCounter, gameCounter, arrayGames) {
 }
 
 $(function() {
+var gameBool;
 
   $("form#game-board").submit(function(event) {
     event.preventDefault();
     $(".displayPlayerOne").hide();
     $(".displayPlayerTwo").hide();
+    $(".displayPlayerTie").hide();
     $(".mark").hide();
-    var playerOne = $("input#player-one-name").val();
-    var playerTwo = $("input#player-two-name").val();
+    gameCounter++;
     var turnCounter = 1;
     var xCord;
     var yCord;
-    gameCounter++;
+    var playerOne = $("input#player-one-name").val();
+    var playerTwo = $("input#player-two-name").val();
+    playerOne = checkForPlayerOneInput(playerOne);
+    playerTwo = checkForPlayerTwoInput(playerTwo);
     newGame = new Players(playerOne, playerTwo, gameCounter);
     arrayGames.push(newGame);
     arrayGames[gameCounter-1] = checkForPlayer(playerOne, playerTwo, arrayGames, gameCounter);
@@ -269,4 +304,13 @@ $(function() {
     $("input#player-one-name").val("");
     $("input#player-two-name").val("");
   })
+
+  // $("#show-players").click(function() {
+  //   playerOne = checkForPlayerOneInput("<li>" + playerOne + "</li>");
+  //   playerTwo = checkForPlayerTwoInput("<li>" + playerTwo + "</li>");
+  //
+  //   $("#list-of-players").append(playerOne);
+  //   $("#list-of-players").append(playerTwo);
+  //   $("#list-of-players").toggle();
+  // })
 });

@@ -9,7 +9,7 @@
 </head>
 <body>
   <div class="container">
-    <div class="jumbotron">
+    <div class="jumbotron top">
       <h1>Tic-Tac-Toe</h1>
     </div>
     <form id="game-board">
@@ -21,11 +21,16 @@
         <label for="player-two-name">Player 2 Name:</label>
         <input type="text" name="playerTwo" id="player-two-name">
       </div>
-      <button type="submit" name="new-game" class="btn btn-success">New Game</button>
+      <button type="submit" name="new-game" id="game-btn" class="btn btn-success">New Game</button>
+      <!-- <button type="button" name="show-players" id="show-players" class="btn btn-success">Show Players</button>
+      <ul id="list-of-players">
+
+      </ul> -->
     </form>
     <div id="name-display">
       <h1 class="displayPlayerOne"></h1>
       <h1 class="displayPlayerTwo"></h1>
+      <h1 class="displayPlayerTie">This game ended in a tie!</h1>
     </div>
     <div id="the-game-board">
       <div class="row">
