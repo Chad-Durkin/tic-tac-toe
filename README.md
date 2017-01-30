@@ -25,7 +25,7 @@ _If you have any questions or comments please contact me via email at Chaddurkin
 ## Technologies Used
 
 * _HTML_
-8 _CSS_
+* _CSS_
 * _BOOTSTRAP_
 * _JAVASCRIPT_
 * _JQUERY_
